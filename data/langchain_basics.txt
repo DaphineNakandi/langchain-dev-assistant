@@ -1,0 +1,32 @@
+# LangChain Text Splitters
+
+When you load documents in LangChain, they are often too large to fit into the LLM's context window. 
+To fix this, you use Text Splitters. The most common one is the RecursiveCharacterTextSplitter.
+
+Example usage:
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200,
+    length_function=len,
+)
+docs = text_splitter.split_documents(documents)
+
+The chunk_size determines the maximum size of each chunk. The chunk_overlap determines how much text is shared between consecutive chunks to maintain context at the boundaries.
+
+# LangChain Messages
+
+LangChain uses three main message types:
+1. SystemMessage: Sets the behavior of the AI.
+2. HumanMessage: The user's input.
+3. AIMessage: The AI's response.
+
+# LangChain Agents
+
+Agents use an LLM to decide which actions to take and in what order. 
+Unlike hardcoded chains, agents can use tools dynamically. 
+A tool is simply a function that the agent can choose to execute.
+
+
+
