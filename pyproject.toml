@@ -1,12 +1,41 @@
 [project]
-name = "blank-app-template"
+name = "langchain-dev-assistant"
 version = "0.1.0"
-description = "A simple Streamlit app template."
+description = "An AI-powered LangChain Developer Assistant with RAG and Tool Calling."
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.11"
 dependencies = [
-    "streamlit>=1.61.1",
+    "streamlit>=1.30",
+    "python-dotenv>=1.0",
+    "openai>=1.30",
+    "langchain>=0.3",
+    "langchain-openai>=0.2",
+    "langchain-community>=0.3",
+    "langchain-chroma>=0.1",
+    "chromadb>=0.5",
+    "ragas>=0.1",
+    "datasets>=2.0",
 ]
 
-[tool.uv]
-package = false
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+py-modules = ["backend", "streamlit_app", "build_vector_db", "evaluate_rag"]
